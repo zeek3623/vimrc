@@ -2,3 +2,7 @@
 	path = pack/ui/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
 	shallow = true
+[submodule "pack/util/start/vim-bbye"]
+	path = pack/util/start/vim-bbye
+	url = https://github.com/moll/vim-bbye.git
+	shallow = true
