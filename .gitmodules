@@ -6,3 +6,19 @@
 	path = pack/util/start/vim-bbye
 	url = https://github.com/moll/vim-bbye.git
 	shallow = true
+[submodule "pack/util/start/vim-better-whitespace"]
+	path = pack/util/start/vim-better-whitespace
+	url = https://github.com/ntpeters/vim-better-whitespace.git
+	shallow = true
+[submodule "pack/util/start/vim-rooter"]
+	path = pack/util/start/vim-rooter
+	url = https://github.com/airblade/vim-rooter.git
+	shallow = true
+[submodule "pack/edit/start/vim-commentary"]
+	path = pack/edit/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+	shallow = true
+[submodule "pack/edit/start/vim-easy-align"]
+	path = pack/edit/start/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align.git
+	shallow = true
