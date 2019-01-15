@@ -30,3 +30,6 @@
 	path = pack/ui/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
 	shallow = true
+[submodule "pack/util/start/vim-gutentags"]
+	path = pack/util/start/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags.git

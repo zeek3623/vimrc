@@ -1,7 +1,7 @@
 "===============================================================================
 " VIM Config
 "-------------------------------------------------------------------------------
-" Plugins managed by VIM's own package manager and organised as follows
+" Plugins managed by VIM's own package manager
 "===============================================================================
 set nocompatible " Work like vim not vi please
 
@@ -160,7 +160,7 @@ set formatoptions=roq " Do not wrap and auto-insert comment leaders. Note:
 " Note: syntax files often change formatoptions for the file so remove comment wrapping for sure!
 au FileType * setlocal formatoptions-=c
 
-" Searching - sensible options.
+" Searching - sensible options :)
 set incsearch
 set ignorecase
 set smartcase
@@ -170,7 +170,6 @@ set gdefault " S/R by default global. Add a /g for single
 " Whitespace management
 let g:better_whitespace_enabled = 0 " Don't show
 let g:strip_whitespace_on_save  = 1 " But strip
-"
 
 " Misc
 set nrformats-=octal  " C-A/X should only assume numbers are decimal or hex.
@@ -184,7 +183,7 @@ set isfname-=, 	      " Remove comma from isfname
 nmap j gj
 nmap k gk
 
-" Smart home 
+" Smart home
 noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
 imap <silent> <Home> <C-O><Home>
 
@@ -205,4 +204,12 @@ let g:easy_align_delimiters[']'] = {'pattern': '\[[^\]]\+\]', 'left_margin': 0, 
 " - Align comments after text only (not headers).
 "let g:easy_align_delimiters['/'] = {'pattern': '\S\@<=\s*//',  'left_margin': 0, 'right_margin': 1, 'ignore_groups': ['string']}
 
+"-------------------------------------------------------------------------------
+" Misc
+"-------------------------------------------------------------------------------
+
+" Use Gutentags for tag handling
+let g:gutentags_enabled = 0
+let g:gutentags_ctags_tagfile = '.tags'
+"let g:gutentags_ctags_exclude
 
