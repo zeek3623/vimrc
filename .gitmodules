@@ -33,3 +33,4 @@
 [submodule "pack/util/start/vim-gutentags"]
 	path = pack/util/start/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
+	shallow = true
