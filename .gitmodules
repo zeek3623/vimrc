@@ -42,3 +42,7 @@
 	path = pack/util/start/ale
 	url = https://github.com/w0rp/ale.git
 	shallow = true
+[submodule "pack/ui/start/vim-vinegar"]
+	path = pack/ui/start/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar.git
+	shallow = true
