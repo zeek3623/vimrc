@@ -34,3 +34,11 @@
 	path = pack/util/start/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
 	shallow = true
+[submodule "pack/util/start/fzf"]
+	path = pack/util/start/fzf
+	url = https://github.com/junegunn/fzf.vim
+	shallow = true
+[submodule "pack/util/start/ale"]
+	path = pack/util/start/ale
+	url = https://github.com/w0rp/ale.git
+	shallow = true

@@ -5,6 +5,9 @@
 "===============================================================================
 set nocompatible " Work like vim not vi please
 
+" Pull in local fzf
+set rtp+=/home/tim/.fzf
+
 filetype plugin indent on
 syntax enable
 
@@ -81,6 +84,7 @@ set laststatus=2 " Always show
 
 " Spelling. Only turn on locally when wanted (setlocal spell)
 set spelllang=en_gb
+nmap <leader>sp :setlocal spell!<CR>
 
 " airline
 "let g:airline_left_sep=''
@@ -90,6 +94,9 @@ set spelllang=en_gb
 
 " GUI Options
 set guioptions-=T " Remove toolbar
+
+" Close location list
+nmap <leader>cl :lclose<CR>
 
 " Navigation
 " -----------
@@ -132,12 +139,35 @@ nnoremap <leader>h :bprevious<CR>
 
 " Version Control
 " ---------------
+
+"  Old school VC. Backup a file
+nmap <leader>bu :!cp %:p %:p.bck<CR>
+
 " Just map some Fugitive commands
 nmap <leader>vh :Glog<CR>
 nmap <leader>vd :Gdiff<CR>
 nmap <leader>vr :Gread<CR>
 nmap <leader>vb :Gblame<CR>
 nmap <leader>vs :Gstatus<CR>
+
+
+" Fuzzy Finding
+" -------------
+let g:fzf_buffers_jump = 1
+let g:fzf_layout = {'up': '~40%'}
+
+nmap <c-p> :Files<CR>
+nmap <leader>; :Buffers<CR>
+nmap <leader>ft :BTags<cr>
+nmap <leader>fT :Tags<cr>
+nmap <leader>fc :BCommits<cr>
+nmap <leader>fC :Commits<cr>
+nmap <leader>fl :BLines<cr>
+nmap <leader>fL :Lines<cr>
+
+" Files seeded with current word
+"nmap <leader>fw :CtrlP<CR><C-\>w
+nmap <leader>fw :call fzf#vim#files('.',{'options':'--query '.expand('<cword>')})<CR>
 
 "-------------------------------------------------------------------------------
 " Editing
@@ -167,6 +197,20 @@ set smartcase
 set hlsearch
 set gdefault " S/R by default global. Add a /g for single
 
+" Search for visually selected text
+vnorem // y/<c-r>"<cr>
+" Highlight cword under cursor
+"   (Note: set hlsearch in case it was unset as setting @/ does not turn it back on unlike a search)
+nmap <leader>*  :let @/='\<'.expand("<cword>").'\>'<CR>:set hlsearch<CR>
+nmap <leader>g* :let @/=expand("<cword>")<CR>:set hlsearch<CR>
+" highlight double clicked word
+nmap <silent> <2-LeftMouse> <leader>*
+" List all occurrences of cword in the file. Alternatively use [I for this file and includes
+nmap <leader>// :execute 'g/'.expand('<cword>').'/'<CR>
+" Clear highlight
+nmap <leader>c/ :noh<CR>
+
+
 " Whitespace management
 let g:better_whitespace_enabled = 0 " Don't show
 let g:strip_whitespace_on_save  = 1 " But strip
@@ -174,7 +218,7 @@ let g:strip_whitespace_on_save  = 1 " But strip
 " Misc
 set nrformats-=octal  " C-A/X should only assume numbers are decimal or hex.
 set nostartofline     " Certain movement commands should try to keep the cursor in the same place
-set isfname-=, 	      " Remove comma from isfname
+set isfname-=,        " Remove comma from isfname
 
 " Navigation
 " ----------
@@ -212,4 +256,20 @@ let g:easy_align_delimiters[']'] = {'pattern': '\[[^\]]\+\]', 'left_margin': 0, 
 let g:gutentags_enabled = 0
 let g:gutentags_ctags_tagfile = '.tags'
 "let g:gutentags_ctags_exclude
+
+"-------------------------------------------------------------------------------
+" File Specific
+"-------------------------------------------------------------------------------
+" TODO: Sort this out - feed into fzf?
+
+" Useful Verilog Mappings
+" nmap <leader>c:'<,'>s/\(in\|out\).*\s\([A-Za-z]\+\)\(\w\+\)_[io],/`INTF_XCHECK(\2, \2\3);/
+" - Convert I/O decl to instance (double escape |)
+"vmap <leader>mdi :s/^\s*\(in\\|out\)put\s*\(wire\s*\)\?\(\[[^\]]\+]\)\?\s*\(\w\+\).*/    .\4 (\4),/<CR>:noh<CR>
+
+" - List all Verilog modules & cells
+"   TODO: Make this only available for verilog files
+"nmap <silent> <leader>lm :!~/scripts/bin/vlg_list_mods_insts %:p<CR>
+" - GoTo module = Ctrl-P with current instance module name inserted
+"nmap <leader>gm :let @m=system('~/scripts/bin/vlg_list_mods_insts '.expand('%:p').' --modOfInst '.line('.'))<CR>:CtrlP<CR><C-\>rm
 
