@@ -46,3 +46,11 @@
 	path = pack/ui/start/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
 	shallow = true
+[submodule "pack/colorschemes/start/sublime-monokai"]
+	path = pack/colorschemes/start/sublime-monokai
+	url = https://github.com/ErichDonGubler/vim-sublime-monokai.git
+	shallow = true
+[submodule "pack/util/start/vim-unimpaired"]
+	path = pack/util/start/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+	shallow = true

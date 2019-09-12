@@ -35,13 +35,13 @@ let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', '
 "-------------------------------------------------------------------------------
 
 " Colourscheme
-"if has('gui_running')
-"  colorscheme molokai-custom
-"  "set guifont=Monospace\ 8
-"else
-"  set t_Co=256
-"  colorscheme distinguished
-"endif
+if has('gui_running')
+  colorscheme sublimemonokai
+  "set guifont=Monospace\ 8
+else
+  set t_Co=256
+  " colorscheme distinguished
+endif
 " Allow color schemes to do bright colors without forcing bold.
 "if &t_Co == 8 && $TERM !~# '^linux'
 "  set t_Co=16
@@ -251,6 +251,19 @@ let g:easy_align_delimiters[']'] = {'pattern': '\[[^\]]\+\]', 'left_margin': 0, 
 "-------------------------------------------------------------------------------
 " Misc
 "-------------------------------------------------------------------------------
+
+" ALE Syntax Checking
+"  Check on save only or dynamically if linter supports it
+"  Limit linters to those I really want. Seen slowdown issues with git commit checks
+let g:ale_open_list = 1
+let g:ale_lint_on_enter = 0
+let g:ale_linters = {
+  \   'perl':          ['perl'],
+  \   'tcl':           ['nagelfar'],
+  \   'verilog':       ['ncvlog'],
+  \   'systemverilog': ['ncvlog'],
+  \}
+let g:ale_linters_explicit = 1
 
 " Use Gutentags for tag handling
 let g:gutentags_enabled = 0
