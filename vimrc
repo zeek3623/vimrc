@@ -6,7 +6,7 @@
 set nocompatible " Work like vim not vi please
 
 " Pull in local fzf
-set rtp+=/home/tim/.fzf
+set rtp+=${HOME}/.fzf
 
 filetype plugin indent on
 syntax enable
