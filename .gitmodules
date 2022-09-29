@@ -54,3 +54,7 @@
 	path = pack/util/start/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
 	shallow = true
+[submodule "pack/ui/start/minimap"]
+	path = pack/ui/start/minimap
+	url = https://github.com/wfxr/minimap.vim
+	shallow = true

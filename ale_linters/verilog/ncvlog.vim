@@ -1,6 +1,7 @@
 " Author: Tim Nolan
 " Description: ALE syntax checker for Verilog using Cadence NCVLOG
 
+call ale#Set('verilog_ncvlog_executable', '/home/timnol01/scripts/bin/vlg_check_syntax_ncvlog')
 call ale#Set('verilog_ncvlog_options', '')
 
 function! ale_linters#verilog#ncvlog#GetCommand(buffer) abort
@@ -32,10 +33,8 @@ endfunction
 call ale#linter#Define('verilog', {
 \   'name': 'ncvlog',
 \   'output_stream': 'both',
-\   'executable': '/home/timnol01/scripts/bin/vlg_check_syntax_ncvlog',
-\   'command_callback': 'ale_linters#verilog#ncvlog#GetCommand',
+\   'executable': {b -> ale#Var(b, 'verilog_ncvlog_executable')},
+\   'command': function('ale_linters#verilog#ncvlog#GetCommand'),
 \   'callback': 'ale_linters#verilog#ncvlog#Handle',
 \   'lint_file': 1,
 \})
-
-"   'executable': '/arm/tools/cadence/incisive/15.20.039/tools.lnx86/bin/64bit/ncvlog',

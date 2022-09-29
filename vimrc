@@ -5,6 +5,8 @@
 "===============================================================================
 set nocompatible " Work like vim not vi please
 
+set encoding=utf-8
+
 " Pull in local fzf
 set rtp+=${HOME}/.fzf
 
@@ -38,6 +40,7 @@ let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', '
 if has('gui_running')
   colorscheme sublimemonokai
   "set guifont=Monospace\ 8
+  set guifont=Dina\ 8
 else
   set t_Co=256
   " colorscheme distinguished
@@ -66,6 +69,8 @@ set display+=lastline " Show as much of the last line as possible
 set cursorline         " Highlight the current lin
 " Note: hlsearch has a lower priority so the column is not highlighted. Bit annoying.
 set colorcolumn=81,133 "Mark end of 80 cols and 132
+hi CursorLine   cterm=NONE ctermbg=234
+hi ColorColumn  cterm=NONE ctermbg=233
 
 " Clearly show some formatting such as explicit tabs
 set listchars=tab:>- " ,trail:.,extends:>,precedes:< " eol:$
@@ -91,6 +96,13 @@ nmap <leader>sp :setlocal spell!<CR>
 "let g:airline_right_sep=''
 "let g:airline#extensions#tabline#enabled    = 1
 "let g:airline#extensions#whitespace#enabled = 0 " Does not seem to work properly... (or as I expect)
+
+" Minimap
+let g:minimap_auto_start = 1
+let g:minimap_width = 10
+let g:minimap_highlight_range = 0
+let g:minimap_highlight_search = 0
+let g:minimap_git_colors = 0
 
 " GUI Options
 set guioptions-=T " Remove toolbar
@@ -155,8 +167,10 @@ nmap <leader>vs :Gstatus<CR>
 " -------------
 let g:fzf_buffers_jump = 1
 let g:fzf_layout = {'up': '~40%'}
+let g:fzf_preview_window = []
 
-nmap <c-p> :Files<CR>
+" nmap <c-p> :Files<CR>
+nmap <expr> <c-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles')."\<cr>"
 nmap <leader>; :Buffers<CR>
 nmap <leader>ft :BTags<cr>
 nmap <leader>fT :Tags<cr>
